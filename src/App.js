@@ -1,25 +1,29 @@
-import logo from './logo.svg';
+import React, {Component} from "react";
 import './App.css';
+import PersonCard from "./components/PersonCard/PersonCard";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class Person {
+    constructor(firstName, lastName, age, hairColor) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.hairColor = hairColor;
+    }
+}
+
+const persons = [new Person("Jane", "Doe", 45, "Black"),
+    new Person("John", "Smith", 88, "Brown"),
+    new Person("Millard", "Fillmore", 50, "Brown"),
+    new Person("Maria", "Smith", 62, "Brown")];
+
+class App extends Component {
+    render() {
+        return (
+            <div className="App">
+                {persons.map((person, index) => <PersonCard key={'pc_' + index} person={person}/>)}
+            </div>
+        );
+    }
 }
 
 export default App;
